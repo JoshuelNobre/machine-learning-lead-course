@@ -1,0 +1,99 @@
+Códigos apresentados no vídeo: Introdução à Análise de Dados com Python.
+
+# coding: utf-8
+# In[ ]:
+import pandas as pd
+# In[ ]:
+frutas = pd.read_table('fruit_data_with_colors.txt',sep='\t')
+# In[ ]:
+frutas
+# In[ ]:
+frutas.shape
+# In[ ]:
+frutas.head(5)
+
+
+
+Códigos apresentados no vídeo: Análise Estatística de um Conjunto de Dados.
+
+# In[ ]:
+frutas
+# In[ ]:
+frutas.describe()
+# In[ ]:
+frutas.describe()['mass']
+# In[ ]:
+frutas.describe()['mass']['min']
+# In[ ]:
+frutas['mass']
+# In[ ]:
+frutas[['mass','color_score']]
+# In[ ]:
+frutas[10:15]
+# In[ ]:
+i = 15
+# In[ ]:
+frutas[i-5:i]
+# In[ ]:
+frutas[i:i+5]
+# In[ ]:
+frutas[['mass','color_score']][i:i+5]
+
+
+Códigos apresentados no vídeo: Análise e Visualização de um Conjunto de Dados.
+
+# In[ ]:
+import matplotlib.pyplot as plt
+# In[ ]:
+freq = frutas['fruit_name'].value_counts()
+# In[ ]:
+freq
+# In[ ]:
+freq.plot(kind='bar')
+plt.show()
+# In[ ]:
+frutas['fruit_name'] == 'apple'
+# In[ ]:
+macas = frutas['fruit_name'] == 'apple'
+# In[ ]:
+frutas[macas]
+# In[ ]:
+frutas['mass'] > 175
+# In[ ]:
+frutas[macas & frutas['mass'] > 175]
+# In[ ]:
+pesadas = frutas['mass'] > 175
+# In[ ]:
+frutas[macas & pesadas]
+# In[ ]:
+X1 = frutas[macas & pesadas]['width']
+X2 = frutas[macas & pesadas]['height']
+# In[ ]:
+plt.scatter(X1,X2)
+plt.show()
+# In[ ]:
+plt.scatter(X1,X2)
+plt.xlabel('comprimento')
+plt.ylabel('altura')
+plt.show()
+# In[ ]:
+X1 = frutas['width']
+X2 = frutas['height']
+# In[ ]:
+plt.scatter(X1,X2)
+plt.xlabel('comprimento')
+plt.ylabel('altura')
+plt.show()
+# In[ ]:
+y = frutas['fruit_label']
+# In[ ]:
+y
+# In[ ]:
+plt.scatter(X1,X2,c=y)
+plt.xlabel('comprimento')
+plt.ylabel('altura')
+plt.show()
+# In[ ]:
+
+
+
