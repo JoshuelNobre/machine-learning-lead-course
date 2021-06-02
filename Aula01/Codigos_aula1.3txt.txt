@@ -1,0 +1,195 @@
+
+# coding: utf-8
+
+# In[ ]:
+
+import pandas as pd
+
+
+# In[ ]:
+
+data = pd.read_table('fruit_data_with_colors_miss.txt')
+
+
+# In[ ]:
+
+data
+
+
+# In[ ]:
+
+data = pd.read_table('fruit_data_with_colors_miss.txt',na_values=['.','?'])
+
+
+# In[ ]:
+
+data
+
+
+# In[ ]:
+
+data.fillna(0)
+
+
+# In[ ]:
+
+data.describe()
+
+
+# In[ ]:
+
+data.fillna(data.mean())
+
+
+# In[ ]:
+
+data['fruit_subtype'].value_counts().argmax()
+
+
+# In[ ]:
+
+data = data.fillna(data.mean())
+
+
+# In[ ]:
+
+data
+
+
+# In[ ]:
+
+data['fruit_subtype'] = data['fruit_subtype'].fillna(data['fruit_subtype'].value_counts().argmax())
+
+
+# In[ ]:
+
+data
+
+
+# In[ ]:
+
+data = pd.read_table('fruit_data_with_colors_miss.txt',na_values=['.','?'])
+
+
+# In[ ]:
+
+data
+
+
+# In[ ]:
+
+data.shape[0]
+
+
+# In[ ]:
+
+data.isnull().sum()
+
+
+# In[ ]:
+
+data.isnull().sum()/data.shape[0] * 100
+
+
+# In[ ]:
+
+data = data[['fruit_label','fruit_name','fruit_subtype','width','height','color_score']]
+
+
+# In[ ]:
+
+data
+
+
+# In[ ]:
+
+data = pd.read_table('fruit_data_with_colors_miss.txt',na_values=['.','?'])
+data = data.fillna(data.mean())
+data = data[['mass','width','height','color_score']]
+
+
+# In[ ]:
+
+data
+
+
+# In[ ]:
+
+data.describe()
+
+
+# In[ ]:
+
+#(valor - min) / (max-min)
+
+
+# In[ ]:
+
+(25 - 12) / (59-12)
+
+
+# In[ ]:
+
+(59-12) / (59-12)
+
+
+# In[ ]:
+
+from sklearn.preprocessing import MinMaxScaler
+
+
+# In[ ]:
+
+mm = MinMaxScaler()
+
+
+# In[ ]:
+
+mm.fit(data)
+
+
+# In[ ]:
+
+data_escala = mm.transform(data)
+
+
+# In[ ]:
+
+data_escala
+
+
+# In[ ]:
+
+data = pd.read_table('fruit_data_with_colors_miss.txt',na_values=['.','?'])
+data = data.fillna(data.mean())
+
+
+# In[ ]:
+
+macas = data[data['fruit_name'] == 'apple']
+
+
+# In[ ]:
+
+macas.describe()
+
+
+# In[ ]:
+
+est = macas['mass'].describe()
+
+
+# In[ ]:
+
+macas[(macas['mass'] > est['mean'] + (est['std']) * 2)]
+
+
+# In[ ]:
+
+macas[(macas['mass'] < est['mean'] - (est['std']) * 2)]
+
+
+# In[ ]:
+
+est['std']
+
